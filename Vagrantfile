@@ -20,6 +20,8 @@ Vagrant.configure("2") do |config|
 		consul.vm.box = "bento/centos-7.5"
 		consul.vm.hostname = "nyx"
 		consul.vm.network "private_network", ip: "10.10.10.10"
+		consul.vm.network "forwarded_port", guest: 8500, host: 8500
+		consul.vm.network "forwarded_port", guest: 22, host: 2200
 	end
 			
 end
