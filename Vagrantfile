@@ -8,20 +8,28 @@
 
 Vagrant.configure("2") do |config|
 
-	config.vm.define "web" do |web|
-		web.vm.provision :shell, path: "bootstrap.sh"
-		web.vm.box = "bento/centos-7.5"
-		web.vm.hostname = "hel"
-		web.vm.network "private_network", ip: "10.10.10.50"
-		web.vm.network "forwarded_port", guest: 80, host: 4567
+	config.vm.define "dev" do |dev|
+		#dev.vm.provision :shell, path: "bootstrap.sh"
+		dev.vm.box = "bento/rockylinux-9"
+		dev.vm.hostname = "dev01"
+		dev.vm.network "private_network", ip: "10.10.10.15"
+		#dev.vm.network "forwarded_port", guest: 80, host: 4567
 	end
 
-	config.vm.define "consul" do |consul|
-		consul.vm.box = "bento/centos-7.5"
-		consul.vm.hostname = "nyx"
-		consul.vm.network "private_network", ip: "10.10.10.10"
-		consul.vm.network "forwarded_port", guest: 8500, host: 8500
-		consul.vm.network "forwarded_port", guest: 22, host: 2200
+	config.vm.define "qa" do |qa|
+#		qa.vm.provision :shell, path: "bootstrap.sh"
+		qa.vm.box = "bento/rockylinux-9"
+		qa.vm.hostname = "qa01"
+		qa.vm.network "private_network", ip: "10.10.10.20"
+		#qa.vm.network "forwarded_port", guest: 80, host: 4567
+	end
+
+	config.vm.define "prod" do |prod|
+		prod.vm.box = "bento/rockylinux-9"
+		prod.vm.hostname = "prod01"
+		prod.vm.network "private_network", ip: "10.10.10.25"
+		#prod.vm.network "forwarded_port", guest: 8500, host: 8500
+		#prod.vm.network "forwarded_port", guest: 22, host: 2200
 	end
 			
 end
