@@ -8,6 +8,11 @@
 
 Vagrant.configure("2") do |config|
 
+	config.vm.define "spider" do |spider|
+		spider.vm.box = "bento/rockylinux-9"
+		spider.vm.hostname = "spider"
+		spider.vm.network "private_network", ip: "10.10.10.5"
+
 	config.vm.define "dev" do |dev|
 		#dev.vm.provision :shell, path: "bootstrap.sh"
 		dev.vm.box = "bento/rockylinux-9"
